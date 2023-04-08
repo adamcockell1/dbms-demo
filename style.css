@@ -1,0 +1,130 @@
+/* Font */
+
+@font-face {
+    font-family: Roboto;
+    src: url("./font/RobotoCondensed-Regular.ttf");
+}
+
+
+/* Text Style */
+
+h1, h2, h3, p, label {
+    color: #a1b2d4;
+    font-family: Roboto;
+    text-decoration: none;
+    text-align: center;
+    float: center;
+}
+
+/* Make default paragraph font slightly larger */
+p, label { font-size: 18px; }
+
+
+/* Divider Style */
+
+body {
+    background-color: #112233;
+}
+
+div {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    width: 100%;
+}
+
+.formdiv {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: grid;
+    width: 100%;
+}
+
+hr {
+    color: #223355;
+    background-color: #223355;
+    border-style: solid;
+    border-radius: 8px;
+    height: 5px;
+}
+
+
+/* Table Style */
+table {
+    border-collapse: collapse;
+    border: 2px solid;
+    width: 60%;
+    margin: 20px 0px 20px 0px;
+}
+
+th, td {
+    color: #a1b2d4;
+    font-size: 18px;
+    font-family: Roboto;
+    text-decoration: none;
+    border: 2px solid;
+    border-collapse: collapse;
+    padding: 12px 24px;
+}
+
+
+/* Form Style */
+
+input, select {
+    color: #000000;
+    background-color: #a1b1d3;
+    font-size: 18px;
+    font-family: Roboto;
+    text-decoration: none;
+    padding: 4px 4px;
+    min-width: 300px;
+    box-sizing: border-box;
+    margin: 5px 10px 15px 10px;
+    display: block;
+    border: none;
+    transition-duration: 0.4s;
+}
+
+input:hover, select:hover {
+    background-color: #c3d4f6;
+    outline-color: #c3d4f6;
+    outline: none;
+}
+
+
+/* Button Style */
+
+button {
+    color: #000000;
+    background-color: #a1b1d3;
+    font-size: 18px;
+    font-family: Roboto;
+    text-decoration: none;
+    padding: 12px 24px;
+    min-width: 230px;
+    margin: 10px 10px 10px 10px;
+    border: none;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #c3d4f6;
+    box-shadow: 8px 8px 12px 0px #000515;
+}
+
+button:active {
+    transition-duration: 0.1s;
+    box-shadow: 0px 0px 0px 0px #000515;
+}
+
+/* Change color to green for 'add' buttons */
+.btn-add { background-color: #7dcc7d; }
+.btn-add:hover { background-color: #a0f0a0; }
+
+/* Change color to red for 'remove' buttons */
+.btn-rmv { background-color: #cc7c7c; }
+.btn-rmv:hover { background-color: #f0a0a0; }
