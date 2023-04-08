@@ -13,17 +13,15 @@
         </div>
         <h1>Employee Schedule Page</h1>
         <hr style="margin-bottom: 20px">
-        <form action="./accessdb.php" method="post">
+        <form action="./schedule.php" method="POST">
             <div class="formdiv">
-                <label for="employeeName">Employee:</label>
-                <select type="option" name="id" id="employeeName">
+                <label for="id">Select Employee:</label>
+                <select type="option" name="id" id="id">
                     <?php
                         $result = $conn -> query("SELECT DISTINCT * FROM employee");
                         while ($row = $result -> fetch()) {
-                            echo '<option>'.$row['firstName'].' '.$row['lastName'].
-                                ' ('.$row['id'].')</option>';
+                            echo '<option>'.$row['firstName'].' '.$row['lastName'].'</option>';
                         }
-                        $id = filter_var($_POST["employeeName"], FILTER_SANITIZE_NUMBER_INT);
                     ?>
                 </select>
             </div>
@@ -32,6 +30,18 @@
                     class="btn-add">View Schedule</button>
             </div>
         </form>
+        <?php
+            if (isset($_POST['id'])) {
+                $id = $_POST['id'];
+                $firstName = $_POST['firstName'];
+                $lastName = $_POST['lastName'];
+            } else {
+                $id = 11;
+                $firstName = 'Mary';
+                $lastName = 'Nguyen';
+            }
+        ?>
+        <h2>Schedule for <?php echo $firstName.' '.$lastName;?></h2>
         <div>
             <table>
                 <tr>
@@ -44,15 +54,35 @@
                 <?php
                     $result = $conn -> query("SELECT DISTINCT * FROM shift
                         WHERE employeeId = '$id'");
-                        echo $id;
                     while ($row = $result -> fetch()) {
                         echo '<tr>
-                                <td>'.$row['day'].'</td>
-                                <td>'.$row['day'].'</td>
-                                <td>'.$row['day'].'</td>
-                                <td>'.$row['day'].'</td>
-                                <td>'.$row['day'].'</td>
-                            </tr>';
+                                <td>';
+                                if ($row['day'] == 'Monday') {
+                                    echo 'Start time: '.$row['startTime'].
+                                    '<br><br>End time: '.$row['endTime'];
+                                } else { echo 'No shift'; }
+                                echo '</td>'.'<td>';
+                                if ($row['day'] == 'Tuesday') {
+                                    echo 'Start time: '.$row['startTime'].
+                                    '<br><br>End time: '.$row['endTime'];
+                                } else { echo 'No shift'; }
+                                echo '</td>'.'<td>';
+                                if ($row['day'] == 'Wednesday') {
+                                    echo 'Start time: '.$row['startTime'].
+                                    '<br><br>End time: '.$row['endTime'];
+                                } else { echo 'No shift'; }
+                                echo '</td>'.'<td>';
+                                if ($row['day'] == 'Thursday') {
+                                    echo 'Start time: '.$row['startTime'].
+                                    '<br><br>End time: '.$row['endTime'];
+                                } else { echo 'No shift'; }
+                                echo '</td>'.'<td>';
+                                if ($row['day'] == 'Friday') {
+                                    echo 'Start time: '.$row['startTime'].
+                                    '<br><br>End time: '.$row['endTime'];
+                                } else { echo 'No shift'; }
+                                echo '</td>'.
+                            '</tr>';
                     }
                 ?>
             </table>
