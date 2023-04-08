@@ -28,5 +28,8 @@
                 <button type="button">View Order Information</button>
             </a>
         </div>
+        <?php
+            $conn = NULL;
+        ?>
     </body>
 </html>

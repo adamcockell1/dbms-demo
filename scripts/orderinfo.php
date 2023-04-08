@@ -28,5 +28,8 @@
                 <button type="button">Main Page</button>
             </a>
         </div>
+        <?php
+            $conn = NULL;
+        ?>
     </body>
 </html>
