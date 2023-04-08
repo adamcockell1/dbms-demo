@@ -26,9 +26,12 @@ img {
     border: 7px solid #223355;
     border-radius: 8px;
     display: flex;
-    width: 40%;
-    user-select: none;
+    max-width: 310px;
+    max-height: 175px;
     pointer-events: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
 }
 
 
@@ -61,11 +64,12 @@ hr {
 
 
 /* Table Style */
+
 table {
     border-collapse: collapse;
     border: 2px solid;
     width: 60%;
-    margin: 20px 0px 20px 0px;
+    margin: 0px 0px 20px 0px;
 }
 
 th, td {
