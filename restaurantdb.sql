@@ -224,6 +224,22 @@ VALUES      (11, 'marynguyen@example.com', 'Mary', 'Nguyen', 'The Mixer'),
             (55, 'lisawhite@example.com', 'Lisa', 'White', 'The Pizzaplex'),
             (66, 'peterbrown@example.com', 'Peter', 'Brown', 'Poke Paradise');
 
+INSERT INTO manageremployee
+            (employeeId)
+VALUES      (55);
+
+INSERT INTO chefemployee
+            (employeeId)
+VALUES      (66);
+
+INSERT INTO serveremployee
+            (employeeId)
+VALUES      (11), (22);
+
+INSERT INTO deliveryemployee
+            (employeeId)
+VALUES      (33), (44);
+
 INSERT INTO payment
             (customerEmail, paymentId, amount, date)
 VALUES      ('johndoe@example.com', 111, 20.00, '2022-03-15'),
