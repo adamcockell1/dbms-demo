@@ -16,15 +16,25 @@ h1, h2, h3, p, label {
     float: center;
 }
 
-/* Make default paragraph font slightly larger */
+/* Make default paragraph and label font slightly larger */
 p, label { font-size: 18px; }
+
+
+/* Image Style */
+
+img {
+    border: 7px solid #223355;
+    border-radius: 8px;
+    display: flex;
+    width: 40%;
+    user-select: none;
+    pointer-events: none;
+}
 
 
 /* Divider Style */
 
-body {
-    background-color: #112233;
-}
+body { background-color: #112233; }
 
 div {
     justify-content: center;
@@ -43,11 +53,10 @@ div {
 }
 
 hr {
-    color: #223355;
     background-color: #223355;
-    border-style: solid;
+    border: 0px solid #223355;
     border-radius: 8px;
-    height: 5px;
+    height: 7px;
 }
 
 
