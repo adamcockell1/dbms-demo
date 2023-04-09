@@ -7,43 +7,48 @@
         <title>Restaurant Database Management Website</title>
     </head>
     <body>
-        <?php include './connectdb.php'; ?>
+        <?php include "./connectdb.php"; ?>
         <div>
             <img src="../logo.png" alt="Restaurant Logo">
         </div>
         <h1>Customer Management Page</h1>
         <hr>
         <h2>Customers in database</h2>
-        <form action="./accessdb.php" method="POST">
             <div>
                 <table>
                     <tr>
-                        <th>Remove?</th>
                         <th>Email Address</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th>Name</th>
                         <th>Phone Number</th>
                         <th>City</th>
                         <th>Postal Code</th>
                         <th>Home Address</th>
                         <th>Credit</th>
+                        <th>Remove From Database</th>
                     </tr>
                     <?php
                         $result = $conn -> query("SELECT DISTINCT * FROM customer");
                         while ($row = $result -> fetch()) {
-                            echo '<tr>
-                                    <td>'.'<button type="submit" name="formButton"
-                                        value="rmvCustomer" class="btn-rmv">
-                                        Remove Customer</button>'.'</td>
-                                    <td>'.$row['email'].'</td>
-                                    <td>'.$row['firstName'].'</td>
-                                    <td>'.$row['lastName'].'</td>
-                                    <td>'.$row['phone'].'</td>
-                                    <td>'.$row['city'].'</td>
-                                    <td>'.$row['postalCode'].'</td>
-                                    <td>'.$row['address'].'</td>
-                                    <td>'.$row['credit'].'</td>
-                                </tr>';
+                            $email = $row["email"];
+                            $name = $row["firstName"].' '.$row["lastName"];
+                            $phone = $row["phone"];
+                            $city = $row["city"];
+                            $postalCode = $row["postalCode"];
+                            $address = $row["address"];
+                            $credit = $row["credit"];
+                            echo "<tr>";
+                                echo "<td>".$email."</td>";
+                                echo "<td>".$name."</td>";
+                                echo "<td>".$phone."</td>";
+                                echo "<td>".$city."</td>";
+                                echo "<td>".$postalCode."</td>";
+                                echo "<td>".$address."</td>";
+                                echo "<td>".$credit."</td>";
+                                echo "<form action='./accessdb.php' method='POST'>";
+                                echo "<td>"."<input type='hidden' name='email' value=".$email.">";
+                                echo "<button type='submit' name='formButton' value='rmvCustomer'
+                                    class='btn-rmv'>Remove Customer</button></form>"."</td>";
+                            echo "</tr>";
                         }
                     ?>
                 </table>

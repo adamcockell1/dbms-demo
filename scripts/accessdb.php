@@ -15,9 +15,8 @@ function addCustomer($conn) {
         $address = filter_var($_POST["address"], FILTER_SANITIZE_STRING);
         /* Attempt to insert given values into customer table */
         try {
-            $query = $conn -> query("INSERT INTO customer VALUES
-                ('$email', '$firstName', '$lastName', '$phone', '$city',
-                '$postalCode', '$address', 5.00)");
+            $query = $conn -> query("INSERT INTO customer VALUES ('$email', '$firstName',
+                '$lastName', '$phone', '$city', '$postalCode', '$address', 5.00)");
         } catch (PDOException $err) {
             print "Error: ".$err -> getMessage()."<br/>".
                 "<a href='../restaurant.html'>Main Page</a>";
@@ -111,7 +110,7 @@ function viewSchedule($conn) {
         $id = filter_var($_POST["id"], FILTER_SANITIZE_NUMBER_INT);
         /* Attempt to retrieve employee schedule for given employee id */
         try {
-            $query = $conn -> query("SELECT DISTINCT * FROM shift
+            $query = $conn -> query("SELECT * FROM shift
                 WHERE employeeId = '$id'");
         } catch (PDOException $err) {
             print "Error: ".$err -> getMessage()."<br/>".
@@ -134,8 +133,7 @@ function ordersOnDay($conn) {
         $date = filter_var($_POST["date"], FILTER_SANITIZE_NUMBER_INT);
         /* Attempt to retrieve orders made on a given date */
         try {
-            $query = $conn -> query("SELECT * FROM orderinfo
-                WHERE date = '$date'");
+            $query = $conn -> query("SELECT * FROM orderinfo WHERE date = '$date'");
         } catch (PDOException $err) {
             print "Error: ".$err -> getMessage()."<br/>".
                 "<a href='../restaurant.html'>Main Page</a>";
@@ -150,69 +148,34 @@ function ordersOnDay($conn) {
     }
 }
 
-/* Function for viewing all orders on a given day */
-function numOrders($conn) {
-    /* Check that form values exist and format them according to data type */
-    if (isset($_POST["date"])) {
-        $date = filter_var($_POST["date"], FILTER_SANITIZE_NUMBER_INT);
-        /* Attempt to retrieve orders made on a given date */
-        try {
-            $query = $conn -> query("SELECT DISTINCT * FROM shift
-                WHERE employeeId = '$id'");
-        } catch (PDOException $err) {
-            print "Error: ".$err -> getMessage()."<br/>".
-                "<a href='../restaurant.html'>Main Page</a>";
-            exit();
-        }
-        /* Load the page which made the POST request */
-        header("location:./orderinfo.php");
-    } else {
-        print "Error: View orders per day not successful".var_dump($_POST)."<br>".
-            "<a href='../restaurant.html'>Main Page</a>";
-        exit();
-    }
-}
-
 /* Switch/case for different methods from different form submit buttons */
 switch($_POST["formButton"]) {
 
     /* Case 1 */
-    case "addCustomer":
-        addCustomer($conn);
+    case "addCustomer": addCustomer($conn);
         break;
 
     /* Case 2 */
-    case "rmvCustomer":
-        rmvCustomer($conn);
+    case "rmvCustomer": rmvCustomer($conn);
         break;
 
     /* Case 3 */
-    case "addEmployee":
-        addEmployee($conn);
+    case "addEmployee": addEmployee($conn);
         break;
 
     /* Case 4 */
-    case "rmvEmployee":
-        rmvEmployee($conn);
+    case "rmvEmployee": rmvEmployee($conn);
         break;
 
     /* Case 5 */
-    case "viewSchedule":
-        viewSchedule($conn);
+    case "viewSchedule": viewSchedule($conn);
         break;
 
     /* Case 6 */
-    case "ordersOnDay":
-        numOrders($conn);
-        break;
-
-    /* Case 7 */
-    case "numOrders":
-        numOrders($conn);
+    case "ordersOnDay": ordersOnDay($conn);
         break;
 
     /* Return to main page if no case is matched */
-    default:
-        header("location:../restaurant.html");
+    default: header("location:../restaurant.html");
 }
 ?>

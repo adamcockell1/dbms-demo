@@ -7,20 +7,22 @@
         <title>Restaurant Database Management Website</title>
     </head>
     <body>
-        <?php include './connectdb.php'; ?>
+        <?php include "./connectdb.php"; ?>
         <div>
             <img src="../logo.png" alt="Restaurant Logo">
         </div>
         <h1>Employee Schedule Page</h1>
         <hr style="margin-bottom: 20px">
-        <form action="./schedule.php" method="POST">
+        <form action="./accessdb.php" method="POST">
             <div class="formdiv">
                 <label for="id">Select Employee:</label>
                 <select type="option" name="id" id="id">
                     <?php
-                        $result = $conn -> query("SELECT DISTINCT * FROM employee");
+                        $result = $conn -> query("SELECT id, firstName, lastName,
+                            day, startTime, endTime FROM employee JOIN shift
+                            ON employee.id = shift.employeeId");
                         while ($row = $result -> fetch()) {
-                            echo '<option>'.$row['firstName'].' '.$row['lastName'].'</option>';
+                            echo "<option>".$row["firstName"]." ".$row["lastName"]."</option>";
                         }
                     ?>
                 </select>
@@ -29,64 +31,53 @@
                 <button type="submit" name="formButton" value="viewSchedule"
                     class="btn-add">View Schedule</button>
             </div>
+            <h2>Schedule for <?php echo $firstName.' '.$lastName;?></h2>
+            <div>
+                <table>
+                    <tr>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                    </tr>
+                    <?php
+                        $result = $conn -> query("SELECT DISTINCT * FROM shift
+                            WHERE employeeId = '$id'");
+                        while ($row = $result -> fetch()) {
+                            echo "<tr>
+                                    <td>";
+                                    if ($row["day"] == "Monday") {
+                                        echo "Start time: ".$row["startTime"].
+                                        "<br><br>End time: ".$row["endTime"];
+                                    } else { echo "No shift"; }
+                                    echo "</td>"."<td>";
+                                    if ($row["day"] == "Tuesday") {
+                                        echo "Start time: ".$row["startTime"].
+                                        "<br><br>End time: ".$row["endTime"];
+                                    } else { echo "No shift"; }
+                                    echo "</td>"."<td>";
+                                    if ($row["day"] == "Wednesday") {
+                                        echo "Start time: ".$row["startTime"].
+                                        "<br><br>End time: ".$row["endTime"];
+                                    } else { echo "No shift"; }
+                                    echo "</td>"."<td>";
+                                    if ($row["day"] == "Thursday") {
+                                        echo "Start time: ".$row["startTime"].
+                                        "<br><br>End time: ".$row["endTime"];
+                                    } else { echo "No shift"; }
+                                    echo "</td>"."<td>";
+                                    if ($row["day"] == "Friday") {
+                                        echo "Start time: ".$row["startTime"].
+                                        "<br><br>End time: ".$row["endTime"];
+                                    } else { echo "No shift"; }
+                                    echo "</td>".
+                                "</tr>";
+                        }
+                    ?>
+                </table>
+            </div>
         </form>
-        <?php
-            if (isset($_POST['id'])) {
-                $id = $_POST['id'];
-                $firstName = $_POST['firstName'];
-                $lastName = $_POST['lastName'];
-            } else {
-                $id = 11;
-                $firstName = 'Mary';
-                $lastName = 'Nguyen';
-            }
-        ?>
-        <h2>Schedule for <?php echo $firstName.' '.$lastName;?></h2>
-        <div>
-            <table>
-                <tr>
-                    <th>Monday</th>
-                    <th>Tuesday</th>
-                    <th>Wednesday</th>
-                    <th>Thursday</th>
-                    <th>Friday</th>
-                </tr>
-                <?php
-                    $result = $conn -> query("SELECT DISTINCT * FROM shift
-                        WHERE employeeId = '$id'");
-                    while ($row = $result -> fetch()) {
-                        echo '<tr>
-                                <td>';
-                                if ($row['day'] == 'Monday') {
-                                    echo 'Start time: '.$row['startTime'].
-                                    '<br><br>End time: '.$row['endTime'];
-                                } else { echo 'No shift'; }
-                                echo '</td>'.'<td>';
-                                if ($row['day'] == 'Tuesday') {
-                                    echo 'Start time: '.$row['startTime'].
-                                    '<br><br>End time: '.$row['endTime'];
-                                } else { echo 'No shift'; }
-                                echo '</td>'.'<td>';
-                                if ($row['day'] == 'Wednesday') {
-                                    echo 'Start time: '.$row['startTime'].
-                                    '<br><br>End time: '.$row['endTime'];
-                                } else { echo 'No shift'; }
-                                echo '</td>'.'<td>';
-                                if ($row['day'] == 'Thursday') {
-                                    echo 'Start time: '.$row['startTime'].
-                                    '<br><br>End time: '.$row['endTime'];
-                                } else { echo 'No shift'; }
-                                echo '</td>'.'<td>';
-                                if ($row['day'] == 'Friday') {
-                                    echo 'Start time: '.$row['startTime'].
-                                    '<br><br>End time: '.$row['endTime'];
-                                } else { echo 'No shift'; }
-                                echo '</td>'.
-                            '</tr>';
-                    }
-                ?>
-            </table>
-        </div>
         <hr>
         <h2>Navigation</h2>
         <div>
