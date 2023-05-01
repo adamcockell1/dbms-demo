@@ -4,7 +4,7 @@ Built using HTML, PHP, CSS, and generic SQL for deployment on a wide range of sy
 <br></br>
 Video demo:
 <br></br>
-[![Embedded Image Link to Video Demo](http://img.youtube.com/vi/-76KSINCmUo/0.jpg)](http://www.youtube.com/watch?v=-76KSINCmUo "DBMS Web App Demo")
+<br>[![Embedded Image Link to Video Demo](http://img.youtube.com/vi/-76KSINCmUo/0.jpg)](http://www.youtube.com/watch?v=-76KSINCmUo "DBMS Web App Demo")</br>
 <br></br>
 Raw link: https://youtu.be/-76KSINCmUo
 <br></br>
